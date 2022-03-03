@@ -10,6 +10,7 @@ std::thread nativeThread;
 ThreadSafeFunction tsfn;
 const UINT STOP_MESSAGE = WM_USER + 1;
 
+void releaseThreadFunction();
 static VOID CALLBACK hook_proc(HWINEVENTHOOK, DWORD, HWND, LONG, LONG, DWORD, DWORD);
 
 static auto callback = [](Napi::Env env, Function jsCallback, std::string value)
@@ -25,6 +26,7 @@ static HWND target_hwnd = NULL;
 void windowwindows::start(const CallbackInfo &info)
 {
     Env env = info.Env();
+    releaseThreadFunction();
     const int64_t hwnd = info[0].As<Number>().Int64Value();
     target_hwnd = (HWND)hwnd;
     // Create a ThreadSafeFunction
@@ -56,6 +58,12 @@ void windowwindows::start(const CallbackInfo &info)
     EVENT_SYSTEM_MINIMIZEEND, EVENT_SYSTEM_MINIMIZEEND,
     NULL, hook_proc, 0, 0, WINEVENT_OUTOFCONTEXT);
 
+    DWORD pid;
+    DWORD threadId = GetWindowThreadProcessId(target_hwnd, &pid);
+    SetWinEventHook(
+    EVENT_OBJECT_DESTROY, EVENT_OBJECT_DESTROY,
+    NULL, hook_proc, 0, threadId,
+    WINEVENT_OUTOFCONTEXT);
     MSG msg;
     while (GetMessage(&msg, NULL, 0, 0)) {
         if (msg.message == STOP_MESSAGE) {
@@ -89,9 +97,21 @@ static VOID CALLBACK hook_proc(
             tsfn.BlockingCall("maximize", callback);
         }
     }
+    else if (event == EVENT_OBJECT_DESTROY)
+    {
+        if (target_hwnd != NULL && hwnd == target_hwnd)
+        {
+            releaseThreadFunction();
+        }
+    }
 }
 
 void windowwindows::stop(const CallbackInfo &info)
+{
+    releaseThreadFunction();
+}
+
+void releaseThreadFunction()
 {
     if (tsfn)
     {
