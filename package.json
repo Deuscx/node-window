@@ -1,0 +1,20 @@
+{
+  "name": "addon-start",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install": "node-gyp rebuild",
+    "build": "node-gyp rebuild",
+    "clean": "node-gyp clean"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-addon-api": "^4.3.0"
+  },
+  "devDependencies": {
+    "active-win": "^7.7.2"
+  }
+}
