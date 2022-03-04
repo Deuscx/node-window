@@ -111,6 +111,21 @@ void windowwindows::stop(const CallbackInfo &info)
     releaseThreadFunction();
 }
 
+void windowwindows::focusWindow(const CallbackInfo &info)
+{
+    Env env = info.Env();
+    const int64_t hwnd = info[0].As<Number>().Int64Value();
+    HWND target_hwnd = (HWND)hwnd;
+    if (IsIconic(target_hwnd))
+    {
+        ShowWindow(target_hwnd, SW_RESTORE);
+    }
+    else
+    {
+        SetForegroundWindow(target_hwnd);
+    }
+}
+
 void releaseThreadFunction()
 {
     if (tsfn)
@@ -124,5 +139,6 @@ Object windowwindows::Init(Env env, Object exports)
 {
     exports["start"] = Function::New(env, start);
     exports["stop"] = Function::New(env, stop);
+    exports["focusWindow"] = Function::New(env, focusWindow);
     return exports;
 }
