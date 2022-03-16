@@ -5,7 +5,7 @@
 #endif
 
 #ifdef __APPLE__
-#include "macos/windowmacos.h"
+#include "macos/window.h""
 #endif
 
 

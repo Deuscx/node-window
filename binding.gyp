@@ -11,7 +11,7 @@
             }
          ],
          ['OS=="mac"', {
-           'sources': ["src/main.cpp", "src/macos/window.cpp"],
+           'sources': ["src/main.cpp", "src/macos/window.mm"],
            'xcode_settings': {
              'GCC_ENABLE_CPP_EXCEPTIONS': 'YES'
            }
