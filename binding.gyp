@@ -12,7 +12,11 @@
          ],
          ['OS=="mac"', {
            'sources': ["src/main.cpp", "src/macos/window.mm"],
+           "link_settings": {
+             "libraries": ["-framework ApplicationServices"]
+           },
            'xcode_settings': {
+              "OTHER_CPLUSPLUSFLAGS": ["-std=c++11", "-stdlib=libc++"],
              'GCC_ENABLE_CPP_EXCEPTIONS': 'YES'
            }
          }
