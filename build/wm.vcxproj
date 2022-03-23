@@ -48,7 +48,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\include\node;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\src;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\openssl\config;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\openssl\openssl\include;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\uv\include;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\zlib;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\v8\include;D:\VusialStudioProjects\addon-start\node_modules\node-addon-api;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\include\node;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\src;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\openssl\config;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\openssl\openssl\include;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\uv\include;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\zlib;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\v8\include;D:\VusialStudioProjects\addon-start\node_modules\.pnpm\node-addon-api@4.3.0\node_modules\node-addon-api;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <BufferSecurityCheck>true</BufferSecurityCheck>
@@ -84,13 +84,13 @@
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <ResourceCompile>
-      <AdditionalIncludeDirectories>C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\include\node;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\src;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\openssl\config;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\openssl\openssl\include;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\uv\include;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\zlib;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\v8\include;D:\VusialStudioProjects\addon-start\node_modules\node-addon-api;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\include\node;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\src;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\openssl\config;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\openssl\openssl\include;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\uv\include;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\zlib;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\v8\include;D:\VusialStudioProjects\addon-start\node_modules\.pnpm\node-addon-api@4.3.0\node_modules\node-addon-api;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NODE_GYP_MODULE_NAME=wm;USING_UV_SHARED=1;USING_V8_SHARED=1;V8_DEPRECATION_WARNINGS=1;V8_DEPRECATION_WARNINGS;V8_IMMINENT_DEPRECATION_WARNINGS;_GLIBCXX_USE_CXX11_ABI=1;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_HAS_EXCEPTIONS=0;OPENSSL_NO_PINSHARED;OPENSSL_THREADS;NAPI_DISABLE_CPP_EXCEPTIONS;BUILDING_NODE_EXTENSION;HOST_BINARY=&quot;node.exe&quot;;DEBUG;_DEBUG;V8_ENABLE_CHECKS;%(PreprocessorDefinitions);%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\include\node;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\src;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\openssl\config;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\openssl\openssl\include;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\uv\include;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\zlib;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\v8\include;D:\VusialStudioProjects\addon-start\node_modules\node-addon-api;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\include\node;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\src;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\openssl\config;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\openssl\openssl\include;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\uv\include;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\zlib;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\v8\include;D:\VusialStudioProjects\addon-start\node_modules\.pnpm\node-addon-api@4.3.0\node_modules\node-addon-api;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
       <BufferSecurityCheck>true</BufferSecurityCheck>
       <DebugInformationFormat>OldStyle</DebugInformationFormat>
@@ -129,7 +129,7 @@
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <ResourceCompile>
-      <AdditionalIncludeDirectories>C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\include\node;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\src;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\openssl\config;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\openssl\openssl\include;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\uv\include;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\zlib;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\v8\include;D:\VusialStudioProjects\addon-start\node_modules\node-addon-api;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\include\node;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\src;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\openssl\config;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\openssl\openssl\include;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\uv\include;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\zlib;C:\Users\deuscx\AppData\Local\node-gyp\Cache\16.14.0\deps\v8\include;D:\VusialStudioProjects\addon-start\node_modules\.pnpm\node-addon-api@4.3.0\node_modules\node-addon-api;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NODE_GYP_MODULE_NAME=wm;USING_UV_SHARED=1;USING_V8_SHARED=1;V8_DEPRECATION_WARNINGS=1;V8_DEPRECATION_WARNINGS;V8_IMMINENT_DEPRECATION_WARNINGS;_GLIBCXX_USE_CXX11_ABI=1;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_HAS_EXCEPTIONS=0;OPENSSL_NO_PINSHARED;OPENSSL_THREADS;NAPI_DISABLE_CPP_EXCEPTIONS;BUILDING_NODE_EXTENSION;HOST_BINARY=&quot;node.exe&quot;;%(PreprocessorDefinitions);%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
   </ItemDefinitionGroup>
@@ -146,8 +146,8 @@
     <ClCompile Include="C:\Users\deuscx\AppData\Roaming\nvm\v16.14.0\node_modules\npm\node_modules\node-gyp\src\win_delay_load_hook.cc"/>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="node_modules\node-addon-api\nothing.vcxproj">
-      <Project>{701A2EA8-FB16-2F31-10C0-73802EAA1E91}</Project>
+    <ProjectReference Include="node_modules\.pnpm\node-addon-api@4.3.0\node_modules\node-addon-api\nothing.vcxproj">
+      <Project>{3C10BBB6-E4C4-68D5-F69D-DB77A72B51CE}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>

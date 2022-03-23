@@ -54,13 +54,12 @@ void ReleaseTSFN() {
     // Release the TSFN
     napi_status status = tsfn.Release();
     if (status != napi_ok) {
-      std::cerr << "Failed to release the TSFN!" << std::endl;
     }
     tsfn = NULL;
   }
 }
 
-Napi::Object windowmacos:Init(Napi::Env env, Napi::Object exports) {
+Napi::Object windowmacos::Init(Napi::Env env, Napi::Object exports) {
   exports["start"] = Napi::Function::New(env, start);
   exports["stop"] = Napi::Function::New(env, stop);
   exports["focusWindow"] = Napi::Function::New(env, focusWindow);

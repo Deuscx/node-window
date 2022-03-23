@@ -355,6 +355,7 @@
     "standalone_static_library": 1,
     "msbuild_path": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\MSBuild.exe",
     "bin_links": "true",
+    "ELECTRON_MIRROR": "https://cdn.npm.taobao.org/dist/electron/",
     "ignore_optional": "",
     "ignore_scripts": "",
     "init_license": "MIT",
