@@ -12,7 +12,7 @@ module.exports = defineConfig({
           .end();
       },
       mainProcessWatch: ["src/background.js"],
-      preload: ["src/preload.js"],
+      preload: "src/preload.js",
     },
   },
 });

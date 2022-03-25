@@ -47,9 +47,8 @@ static bool get_content_bounds(HWND hwnd, struct ow_window_bounds *bounds) {
   }
 
   // titlebar-heigh
-  // int32_t height = GetSystemMetrics(SM_CYCAPTION) + GetSystemMetrics(SM_CYEDGE);
-  // logRect(rect);
-  // bounds->x = ptClientUL.x;
+  // int32_t height = GetSystemMetrics(SM_CYCAPTION) +
+  // GetSystemMetrics(SM_CYEDGE); logRect(rect); bounds->x = ptClientUL.x;
   // bounds->y = ptClientUL.y - height;
   bounds->x = 0;
   bounds->y = 0;
@@ -64,8 +63,7 @@ void windowwindows::start(const CallbackInfo &info) {
   releaseThreadFunction();
   target_hwnd = getHWND(info[0]);
   overlay_hwnd = getHWND(info[1]);
-  SetParent(overlay_hwnd,target_hwnd);
-  // SetWindowLongPtr(target_hwnd, GWL_STYLE, WS_VISIBLE);
+  SetParent(overlay_hwnd, target_hwnd);
 
   // Create a ThreadSafeFunction
   tsfn = ThreadSafeFunction::New(
@@ -96,7 +94,7 @@ void windowwindows::start(const CallbackInfo &info) {
     SetWinEventHook(EVENT_OBJECT_DESTROY, EVENT_OBJECT_DESTROY, NULL, hook_proc,
                     0, threadId, WINEVENT_OUTOFCONTEXT);
     SetWinEventHook(EVENT_OBJECT_LOCATIONCHANGE, EVENT_OBJECT_LOCATIONCHANGE,
-                    NULL, hook_proc, pid, threadId, WINEVENT_OUTOFCONTEXT);
+                    NULL, hook_proc, 0, 0, WINEVENT_OUTOFCONTEXT);
 
     MSG msg;
     while (GetMessage(&msg, NULL, 0, 0)) {

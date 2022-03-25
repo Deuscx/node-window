@@ -12,6 +12,7 @@
     "postuninstall": "electron-builder install-app-deps"
   },
   "dependencies": {
+    "@vueuse/core": "^8.1.2",
     "core-js": "^3.8.3",
     "vue": "^3.2.13"
   },
