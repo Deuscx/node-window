@@ -1,19 +1,43 @@
 <template>
   <div>
-    {{ sources }}
+    <ul>
+      <li
+        @click="handleSelect(id)"
+        v-for="{ name, id } of sources"
+        :key="id"
+        :class="{ active: id === selected }"
+      >
+        {{ name }} - {{ id }}
+      </li>
+    </ul>
   </div>
 </template>
 
 <script setup>
 // import { useIntervalFn } from "@vueuse/core";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 
+const selected = ref("");
 const sources = ref();
 /* your function */
 onMounted(async () => {
   sources.value = await window.api.desktopCapturer({
     types: ["window"],
   });
+});
+
+function handleSelect(id) {
+  selected.value = id;
+}
+
+watch(selected, async (val, old) => {
+  if (val) {
+    console.log("🚀 ~ file: HelloWorld.vue ~ line 35 ~ watch ~ val", val);
+    if (old !== val && old) {
+      await window.api.stop();
+    }
+    window.api.start(val);
+  }
 });
 </script>
 
@@ -30,7 +54,7 @@ li {
   display: inline-block;
   margin: 0 10px;
 }
-a {
+.active {
   color: #42b983;
 }
 </style>

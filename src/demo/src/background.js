@@ -1,5 +1,3 @@
-"use strict";
-
 import {
   app,
   protocol,
@@ -10,7 +8,7 @@ import {
 } from "electron";
 import { createProtocol } from "vue-cli-plugin-electron-builder/lib";
 import path from "path";
-import { InvokeChannel} from './constants'
+import { InvokeChannel, SendChannel } from "./constants";
 import installExtension, { VUEJS3_DEVTOOLS } from "electron-devtools-installer";
 const isDevelopment = process.env.NODE_ENV !== "production";
 
@@ -20,6 +18,8 @@ protocol.registerSchemesAsPrivileged([
 ]);
 
 const addon = require("../../../build/Release/wm.node");
+
+const winMap = new Map();
 async function createWindow() {
   // Create the browser window.
   const win = new BrowserWindow({
@@ -32,6 +32,10 @@ async function createWindow() {
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
+    try {
+      // await installExtension(VUEJS3_DEVTOOLS);
+    } catch (error) {
+    }
     await win.loadURL(process.env.WEBPACK_DEV_SERVER_URL);
     win.webContents.openDevTools({ mode: "detach" });
   } else {
@@ -39,19 +43,8 @@ async function createWindow() {
     // Load the index.html when not in development
     win.loadURL("app://./index.html");
   }
-
-  const overlay = createOverlayWindow();
-  const hwnd = win.getNativeWindowHandle();
-  console.log(addon.getWindowPosition(hwnd));
-  console.log("😃", win.getBounds());
-  overlay.setBounds({ ...addon.getWindowPosition(hwnd), x: 0, y: -30 });
-  addon.start(hwnd, overlay.getNativeWindowHandle(), (data) => {
-    // console.log(data);
-    if (data.type === 3) {
-      // console.log("😃", win.getBounds());
-      updateOverlayBounds(data.position, overlay);
-    }
-  });
+  winMap.set("main", win);
+  createOverlayWindow();
 }
 
 function updateOverlayBounds(bounds, win) {
@@ -97,8 +90,9 @@ function createOverlayWindow() {
     <div style="position: absolute; width: 100vw; height: 100vh; border: 3px solid rgba(0, 225, 90, 1); box-sizing: border-box;">
     </div>
   </body>`);
-  // win.setIgnoreMouseEvents(true);
+  win.setIgnoreMouseEvents(true);
   // win.setAlwaysOnTop(true)
+  winMap.set("overlay", win);
   return win;
 }
 
@@ -106,3 +100,38 @@ ipcMain.handle(InvokeChannel.captureSource, async (event, options) => {
   const sources = await desktopCapturer.getSources(options);
   return sources;
 });
+
+ipcMain.on(SendChannel.start, (event, id) => {
+  const main = winMap.get("main");
+  const overlay = winMap.get("overlay");
+  const hwnd = main.getNativeWindowHandle();
+  if (!isScreen(id)) {
+    const target = id.split(":")[1];
+    let numberTarget = Number(target);
+    console.log("🚀 numberTarget", numberTarget);
+    addon.focusWindow(numberTarget);
+    updateOverlayBounds(addon.getWindowPosition(numberTarget), overlay);
+    addon.start(numberTarget, 
+      // overlay.getNativeWindowHandle(), 
+      (data) => {
+      if (data.type === 3) {
+        // console.log("🚀data.position", data.position)
+        updateOverlayBounds(data.position, overlay);
+      }
+    });
+  }
+});
+
+ipcMain.handle(SendChannel.stop, (event) => {
+  console.log("🚀 ~  stop");
+  addon.stop();
+});
+
+/**
+ *
+ * @param {string} id
+ * @returns
+ */
+function isScreen(id) {
+  return id.startsWith("screen");
+}
