@@ -17,6 +17,10 @@ static auto callback = [](Napi::Env env, Function jsCallback,
                           struct ow_event *value) {
   // Transform native data into JS data, passing it to the provided
   // `jsCallback` -- the TSFN's JavaScript function.
+  if (value == nullptr) {
+    // std::cout << "value is null" << std::endl;
+    return;
+  }
   jsCallback.Call({event_data(env, value)});
   // We're finished with the data.
   // value.clear();
@@ -32,23 +36,41 @@ void transformBoundsToObject(struct ow_window_bounds &position,
 //   std::cout << " right: " << rect.right << " bottom: " << rect.bottom
 //             << std::endl;
 // }
+
+// void logPoint(POINT p) {
+//   std::cout << " x: " << p.x << " y: " << p.y << std::endl;
+// }
 /**
  *  获取窗口大小
  * */
 static bool get_content_bounds(HWND hwnd, struct ow_window_bounds *bounds) {
-  RECT rect, windowRect;
+  RECT rect, winRect;
 
   if (GetClientRect(hwnd, &rect) == FALSE) {
     return false;
   }
+  if (GetWindowRect(hwnd, &winRect) == FALSE) {
+    return false;
+  }
   POINT ptClientUL{rect.left, rect.top};
+  POINT ptWindowUL{winRect.left, winRect.top};
+  // logPoint(ptClientUL);
+  // logPoint(ptWindowUL);
+  // std::cout << "==========" << std::endl;
   if (ClientToScreen(hwnd, &ptClientUL) == FALSE) {
     return false;
   }
-
+  if (ScreenToClient(hwnd, &ptWindowUL) == FALSE) {
+    return false;
+  }
   // titlebar-heigh
   // int32_t height = GetSystemMetrics(SM_CYCAPTION) +
-  // GetSystemMetrics(SM_CYEDGE); logRect(rect); bounds->x = ptClientUL.x;
+  // GetSystemMetrics(SM_CYEDGE);
+  // logRect(rect);
+  // logRect(winRect);
+  // logPoint(ptClientUL);
+  // logPoint(ptWindowUL);
+  // bounds->x = ptClientUL.x;
   // bounds->y = ptClientUL.y - height;
   bounds->x = 0;
   bounds->y = 0;
@@ -62,20 +84,22 @@ void windowwindows::start(const CallbackInfo &info) {
   Env env = info.Env();
   releaseThreadFunction();
   target_hwnd = getHWND(info[0]);
-  overlay_hwnd = getHWND(info[1]);
-  SetParent(overlay_hwnd, target_hwnd);
+  // overlay_hwnd = getHWND(info[1]);
+  // SetParent(overlay_hwnd, target_hwnd);
 
   // Create a ThreadSafeFunction
   tsfn = ThreadSafeFunction::New(
       env,
-      info[2].As<Function>(), // JavaScript function called asynchronously
+      info[1].As<Function>(), // JavaScript function called asynchronously
       "shareScreen Events",   // Name
       0,                      // Unlimited queue
       1,                      // Only one thread will use this initially
       [](Napi::Env) {         // Finalizer used to clean threads up
         DWORD threadId = GetThreadId(nativeThread.native_handle());
-        if (threadId == 0)
+        // std::cout << threadId << "finalized" << std::endl;
+        if (threadId == 0) {
           return;
+        }
         PostThreadMessageA(threadId, STOP_MESSAGE, NULL, NULL);
 
         if (nativeThread.joinable()) {
@@ -106,7 +130,6 @@ void windowwindows::start(const CallbackInfo &info) {
       }
     }
   }
-
   );
 }
 
